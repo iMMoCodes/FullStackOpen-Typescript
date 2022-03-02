@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/iMMoCodes/FullStackOpen-Typescript#readme",
   "devDependencies": {
+    "@types/node": "^17.0.21",
     "ts-node": "^10.6.0",
     "typescript": "^4.6.2"
   }
