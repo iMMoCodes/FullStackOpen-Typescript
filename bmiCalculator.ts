@@ -14,49 +14,54 @@ const parseBmiArguments = (args: Array<string>): BmiValues => {
   }
 };
 
-const calculateBmi = (height: number, weight: number) => {
+export const calculateBmi = (height: number, weight: number) => {
   const bmi: number = weight / Math.pow(height / 100, 2);
   if (bmi < 16.0) {
     console.log('Underweight (Severe thinness)');
-    return;
+    return 'Underweight (Severe thinness)';
   }
   if (bmi <= 16.9) {
     console.log('Underweight (Moderate thinness)');
-    return;
+    return 'Underweight (Moderate thinness)';
   }
   if (bmi <= 18.4) {
     console.log('Underweight (Mild thinness)');
-    return;
+    return 'Underweight (Mild thinness)';
   }
   if (bmi <= 24.9) {
     console.log('Normal range');
-    return;
+    return 'Normal range';
   }
   if (bmi <= 29.9) {
     console.log('Overweight (Pre-obese)');
-    return;
+    return 'Overweight (Pre-obese)';
   }
   if (bmi <= 34.9) {
     console.log('Obese (Class I)');
-    return;
+    return 'Obese (Class I)';
   }
   if (bmi <= 39.9) {
     console.log('Obese (Class II)');
-    return;
+    return 'Obese (Class II)';
   }
   if (bmi >= 40) {
     console.log('Obese (Class III)');
-    return;
+    return 'Obese (Class III)';
+  }
+  return null;
+};
+
+const runCalculations = () => {
+  try {
+    const { height, weight } = parseBmiArguments(process.argv);
+    calculateBmi(height, weight);
+  } catch (error: unknown) {
+    let errorMessage = 'Something bad happened.';
+    if (error instanceof Error) {
+      errorMessage += ' Error: ' + error.message;
+    }
+    console.log(errorMessage);
   }
 };
 
-try {
-  const { height, weight } = parseBmiArguments(process.argv);
-  calculateBmi(height, weight);
-} catch (error: unknown) {
-  let errorMessage = 'Something bad happened.';
-  if (error instanceof Error) {
-    errorMessage += ' Error: ' + error.message;
-  }
-  console.log(errorMessage);
-}
+runCalculations();
