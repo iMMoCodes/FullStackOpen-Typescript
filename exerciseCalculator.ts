@@ -35,7 +35,7 @@ const calculateExercises = (
 ): Result => {
   const periodLength: number = exerciseHours.length;
 
-  let trainingDays: number = 0;
+  let trainingDays = 0;
   exerciseHours.map((hoursPerDay) => {
     if (hoursPerDay !== 0) {
       trainingDays++;
@@ -45,8 +45,8 @@ const calculateExercises = (
   const total: number = exerciseHours.reduce((prev, curr) => prev + curr, 0);
   const average: number = total / periodLength;
 
-  let ratingDescription: string;
-  let rating: number;
+  let ratingDescription = '';
+  let rating = 0;
   if (average <= 0.8 * target) {
     rating = 1;
     ratingDescription = 'You can do better!';
@@ -71,7 +71,15 @@ const calculateExercises = (
     target,
     average,
   });
-  return;
+  return {
+    periodLength,
+    trainingDays,
+    success,
+    rating,
+    ratingDescription,
+    target,
+    average,
+  };
 };
 
 try {
